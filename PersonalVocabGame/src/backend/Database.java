@@ -329,6 +329,7 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public static void close() {
 
@@ -351,6 +352,24 @@ public class Database {
 		}
 
 		System.out.println("Closing database. Goodbye!");
+	}
+	
+	
+	
+	public static void interactWithDatabase(String sqlStatement) {
+		
+		
+		try {
+			stmt= conn.createStatement();
+			String sql4 = sqlStatement;
+			stmt.executeUpdate(sql4);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		close();
+		
 	}
 	
 	

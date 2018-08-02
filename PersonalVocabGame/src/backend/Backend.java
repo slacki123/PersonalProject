@@ -18,7 +18,7 @@ public class Backend {
 	static int currentSet;
 	static Scanner sc = new Scanner(System.in);
 
-	public static void admin() {
+	public static void adminMenu() {
 
 		System.out.println(
 				"The admin activities are: \n-add words \n-get word list  \n-change words \n-delete words \n-get user list \n-delete user \nOr type anything to exit to menu");
@@ -35,7 +35,7 @@ public class Backend {
 			String synonym_id = sc.nextLine();
 
 			Admin.addWordsIntoSet1(wordName, wordUseExample, synonym_id);
-			admin();
+			adminMenu();
 		} else if (userIn.equalsIgnoreCase("change words")) {
 
 			System.out.print("Of which word, the use example you want to change: ");
@@ -44,7 +44,7 @@ public class Backend {
 			String changeTo = sc.nextLine();
 
 			Admin.changeWordExample(changeTo, word_name);
-			admin();
+			adminMenu();
 
 		}
 
@@ -54,14 +54,14 @@ public class Backend {
 			String wordName = sc.nextLine();
 
 			Admin.deleteWords(wordName);
-			admin();
+			adminMenu();
 
 		}
 
 		else if (userIn.equalsIgnoreCase("get user list")) {
 
 			Admin.getUserList();
-			admin();
+			adminMenu();
 		}
 
 		else if (userIn.equalsIgnoreCase("delete user")) {
@@ -70,10 +70,10 @@ public class Backend {
 			String username = sc.nextLine();
 
 			Admin.deleteUser(username);
-			admin();
+			adminMenu();
 		} else if (userIn.equalsIgnoreCase("get word list")) {
 			Admin.getWordList();
-			admin();
+			adminMenu();
 
 		} else {
 
@@ -103,7 +103,7 @@ public class Backend {
 
 		} else if (userIn.equalsIgnoreCase("admin")) {
 			if (Database.fetchAdminStatus(LogIn.loggedInUsername)) {
-				admin();
+				adminMenu();
 			} else {
 				System.out.println("You do not have admin privileges \n");
 				menu();
