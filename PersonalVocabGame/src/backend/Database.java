@@ -71,6 +71,7 @@ public class Database {
 	}
 
 	
+	
 	public static void createUser(String username, String password) {
 		// Insert records, create a separate create for each database table
 

@@ -35,6 +35,15 @@ public class AdminTest {
 	}
 	
 	@Test
+	public void getPasswordTest() {
+		User admin = new Admin("username", "password");
+		
+		assertEquals("Wrong username", "password", admin.getPassword());
+	}
+	
+	
+	
+	@Test
 	public void grantAdminPrivilegesTest() {
 		User user = new User("username", "password");
 		Admin admin = new Admin("username", "password");
