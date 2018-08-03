@@ -1,31 +1,42 @@
 package jsonRewrite;
 
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class UserDatabase {
+public class UserDatabase extends GeneralDatabase {
 
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/vocabularygame?useSSL=false";
-	static final String USER = "root";
-	static final String PASS = "password";
+	public static String getUserList() throws SQLException {
+		accessDB();
+		String sqlCreateStatement = "SELECT username, adminPrivileges FROM user";
+		
+		ResultSet rs = databaseCreateStatement(sqlCreateStatement);
 
-	static Connection conn = null;
-	static Statement stmt = null;
+		while (rs.next()) {
+			String username = rs.getString("username");
+			boolean adminPrivileges = rs.getBoolean("admin_status");
+			
+			return "Username: " + username + ", " + "Admin Status: " + adminPrivileges;
+		}
+		rs.close();
+		
+		closeDB();
+		return null;
+
+	}
 
 	public static void deleteUser(String username) {
-		
+
 		String sqlStatement = "DELETE FROM user WHERE username = '" + username + "';";
-		GeneralDatabase.databaseStatement(sqlStatement);
+		databaseStatement(sqlStatement);
 	}
-	
+
 	public static void createUser(String username, String password, boolean adminPrivileges) {
-		
+
 		String sqlStatement = "INSERT INTO user(username, password, admin_status) VALUES ('" + username + "','"
 				+ password + "'," + adminPrivileges + ");";
-		
-		GeneralDatabase.databaseStatement(sqlStatement);
-		
+
+		databaseStatement(sqlStatement);
+
 	}
 
 }

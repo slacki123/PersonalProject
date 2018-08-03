@@ -2,6 +2,7 @@ package jsonRewrite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,6 +16,21 @@ public class GeneralDatabase {
 	static Connection conn = null;
 	static Statement stmt = null;
 
+
+	public static ResultSet databaseCreateStatement(String sqlCreateStatement) {
+		ResultSet rs = null;
+
+		try {
+			stmt = conn.createStatement();
+			String sqlCreate = sqlCreateStatement;
+			rs = stmt.executeQuery(sqlCreate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return rs;
+	}
+
 	public static void databaseStatement(String sqlStatement) {
 		accessDB();
 		insertCreateDelete(sqlStatement);
@@ -27,7 +43,6 @@ public class GeneralDatabase {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-
 				e.printStackTrace();
 			}
 		}

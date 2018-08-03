@@ -25,6 +25,7 @@ public class Database {
 		try {
 			stmt = conn.createStatement();
 			String sql2 = "SELECT admin_status FROM user WHERE username= " + "'" + username + "'";
+			
 			ResultSet rs = stmt.executeQuery(sql2);
 
 			// fetch which values you want for each iteration

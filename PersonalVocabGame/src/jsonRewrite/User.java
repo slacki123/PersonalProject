@@ -11,7 +11,8 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.adminPrivileges = false;
-		UserDatabase.createUser(username, password, false);			
+		UserDatabase.createUser(username, password, false);
+		UserDatabase.deleteUser(username);
 	}
 	
 	

@@ -16,7 +16,6 @@ public class AdminTest {
 	@Test
 	public void getAdminStatusTest() {
 		User user = new Admin("username", "password");
-//		UserDatabase.deleteUser("username");
 		
 		assertTrue("User does not have admin status", user.getAdminStatus());
 
@@ -25,7 +24,6 @@ public class AdminTest {
 	@Test
 	public void getAccessGrantedTest() {
 		User admin = new Admin("username", "password");
-		UserDatabase.deleteUser("username");
 		admin.setAccessGranted(true);
 		
 		assertTrue("Access Not Granted", admin.getAccessGranted());
@@ -34,7 +32,6 @@ public class AdminTest {
 	@Test
 	public void getUsernameTest() {
 		User admin = new Admin("username", "password");
-		UserDatabase.deleteUser("username");
 		
 		assertEquals("Wrong username", "username", admin.getUsername());
 	}
@@ -42,7 +39,6 @@ public class AdminTest {
 	@Test
 	public void getPasswordTest() {
 		User admin = new Admin("username", "password");
-		UserDatabase.deleteUser("username");
 		
 		assertEquals("Wrong username", "password", admin.getPassword());
 	}
@@ -51,10 +47,8 @@ public class AdminTest {
 	@Test
 	public void grantAdminPrivilegesTest() {
 		User user = new User("username", "password");
-		UserDatabase.deleteUser("username");
 		Admin admin = new Admin("username", "password");
-		UserDatabase.deleteUser("username");
-		
+
 		admin.grantAdminPrivileges(user);
 		
 		assertTrue("User has not received admin status", user.getAdminStatus());
@@ -63,10 +57,7 @@ public class AdminTest {
 	@Test
 	public void revokeAdminPrivilegesTest() {
 		User user = new User("username", "password");
-		UserDatabase.deleteUser("username");
 		Admin admin = new Admin("username", "password");
-		UserDatabase.deleteUser("username");
-		
 		
 		admin.grantAdminPrivileges(user);
 		admin.revokeAdminPrivileges(user);
