@@ -15,10 +15,7 @@ public class GeneralDatabase {
 	static Connection conn = null;
 	static Statement stmt = null;
 
-	static int synonym_id;
-
-	
-	public static void databaseInput(String sqlStatement) {
+	public static void databaseStatement(String sqlStatement) {
 		accessDB();
 		insertCreateDelete(sqlStatement);
 		closeDB();
@@ -30,7 +27,7 @@ public class GeneralDatabase {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
@@ -39,39 +36,41 @@ public class GeneralDatabase {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 	}
 
 	public static void accessDB() {
-		// should probably be able to set create,insert,update and delete as separate
-		// methods
 
 		try {
+
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 
 			e1.printStackTrace();
 		}
-		
+
 		try {
+
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void insertCreateDelete(String sqlStatement) {
-		
+
 		try {
-			stmt= conn.createStatement();
+
+			stmt = conn.createStatement();
 			String sql4 = sqlStatement;
 			stmt.executeUpdate(sql4);
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

@@ -6,12 +6,14 @@ public class User {
 	private String password;
 	private boolean accessGranted;
 	protected boolean adminPrivileges;
-	
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 		this.adminPrivileges = false;
+		UserDatabase.createUser(username, password, false);			
 	}
+	
 	
 	public String getUsername() {
 		return username;
@@ -37,6 +39,7 @@ public class User {
 		
 
 	}
+	
 	
 	
 	
